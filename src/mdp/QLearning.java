@@ -60,6 +60,7 @@ public class QLearning {
             this.createQTable();
         else
             this.loadQTable();
+
     }
 
     /**
@@ -105,9 +106,7 @@ public class QLearning {
         switch (this.system) {
             case STEERING_CONTROL_SYSTEM:
                 for (SteerControl.States state : SteerControl.States.values()) {
-                    HashMap<String, Double> row =
-
-                            new HashMap<>();
+                    HashMap<String, Double> row = new HashMap<>();
                     for (Object tmp : this.possibleActions) {
                         SteerControl.Actions action = (SteerControl.Actions) tmp;
                         row.put(action.name(), 0.0);
@@ -145,15 +144,21 @@ public class QLearning {
         qTable.clear();
         try (Scanner file = new Scanner(new File(this.qTablePath))) {
             String[] rowLabels = file.nextLine().split(SEPARATOR);
-
+            for (String i : rowLabels) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
             while (file.hasNextLine()) {
                 String[] row = file.nextLine().split(SEPARATOR);
                 String state = row[0];
+                System.out.print(state + " ");
                 HashMap<String, Double> rowHash = new HashMap<>();
                 for (int i = 1; i < row.length; i++) {
                     rowHash.put(rowLabels[i], Double.parseDouble(row[i]));
+                    System.out.print(row[i] + " ");
                 }
                 this.qTable.put(state, rowHash);
+                System.out.println();
             }
         } catch (FileNotFoundException e) {
             System.out.println("ERROR!!! -> Could not load tablaQ from .csv file...");
@@ -578,9 +583,7 @@ public class QLearning {
         List<String> content = new ArrayList<>();
         try (Scanner file = new Scanner(new File(filePath))) {
             while (file.hasNextLine()) {
-                content.add
-
-                        (file.nextLine());
+                content.add(file.nextLine());
             }
         } catch (FileNotFoundException e) {
             System.out.println("ERROR!!! -> Could not load statistics from .csv file...");

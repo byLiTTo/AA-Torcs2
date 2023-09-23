@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60749e4e-497b-4599-be9b-979f087c3022" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/src/mdp/QLearning.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/Action.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/DrivingInstructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/MessageBasedSensorModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/MessageParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/SensorModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/torcs/SocketHandler.java" afterDir="false" />
+    <list default="true" id="60749e4e-497b-4599-be9b-979f087c3022" name="Changes" comment="Tomamos como punto de partida el proyecto entregado en Julio">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/drivers/DirectionDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdp/AccelControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdp/GearControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdp/SteerControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdp/resources/QTable_Accel.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdp/resources/QTable_Gear.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdp/resources/QTable_Steer.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mdp/QLearning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/QLearning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/torcs/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/torcs/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,31 +33,37 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2ViPcsanan9ztiOWy1M5qPQX9r9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/carlos/WORKSPACE/AA-Torcs/src/torcs",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/carlos/WORKSPACE/AA-Torcs/out/production/AA-Torcs/mdp/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources" />
+      <recent name="$PROJECT_DIR$/src/mdp/resources" />
+      <recent name="$PROJECT_DIR$/src/drivers" />
       <recent name="$PROJECT_DIR$/src/torcs" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -71,7 +78,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695316011587</updated>
-      <workItem from="1695316012991" duration="966000" />
+      <workItem from="1695316012991" duration="15452000" />
+      <workItem from="1695396355763" duration="15376000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -81,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695316063844</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Tomamos como punto de partida el proyecto entregado en Julio">
+      <option name="closed" value="true" />
+      <created>1695317425042</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695317425042</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,6 +105,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Tomamos como punto de partida el proyecto entregado en Julio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tomamos como punto de partida el proyecto entregado en Julio" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
