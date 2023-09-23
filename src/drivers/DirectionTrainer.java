@@ -38,9 +38,9 @@ public class DirectionTrainer extends Controller {
      * Initializes a new instance of the DirectionTrainer class.
      */
     public DirectionTrainer() {
-        steerControlSystem = new QLearning(Constants.ControlSystems.STEERING_CONTROL_SYSTEM, Constants.RANGE_EPOCHS);
-        previousSteerState = SteerControl.States.CENTER;
-        currentSteerState = SteerControl.States.CENTER;
+        steerControlSystem = new QLearning(Constants.ControlSystems.STEERING_CONTROL_SYSTEM, Constants.MAX_EPOCHS, Constants.RANGE_EPOCHS);
+        previousSteerState = SteerControl.States.STATE_9;
+        currentSteerState = SteerControl.States.STATE_9;
         actionSteer = SteerControl.Actions.TURN_C;
         steerReward = 0;
 
@@ -62,7 +62,6 @@ public class DirectionTrainer extends Controller {
      * Controls the car based on the current sensor inputs.
      *
      * @param sensors the sensor inputs received from the car
-     *
      * @return the action to be performed by the car
      */
     @Override
@@ -181,31 +180,31 @@ public class DirectionTrainer extends Controller {
         // Calculate steer value
         double steer;
 
-//        if (this.tics % 5 == 0) {
-//            this.previousSteerState = this.currentSteerState;
-//            this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-//            this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-//            this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-//                    this.previousSteerState,
-//                    this.currentSteerState,
-//                    this.actionSteer,
-//                    this.steerReward
-//            );
-//            steer = SteerControl.steerAction2Double(this.actionSteer);
-//        } else {
-//            steer = SteerControl.steerAction2Double(this.actionSteer);
-//        }
+        if (this.tics % 5 == 0) {
+            this.previousSteerState = this.currentSteerState;
+            this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
+            this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
+            this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
+                    this.previousSteerState,
+                    this.currentSteerState,
+                    this.actionSteer,
+                    this.steerReward
+            );
+            steer = SteerControl.steerAction2Double(this.actionSteer);
+        } else {
+            steer = SteerControl.steerAction2Double(this.actionSteer);
+        }
 
-        this.previousSteerState = this.currentSteerState;
-        this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-        this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-                this.previousSteerState,
-                this.currentSteerState,
-                this.actionSteer,
-                this.steerReward
-        );
-        steer = SteerControl.steerAction2Double(this.actionSteer);
+//        this.previousSteerState = this.currentSteerState;
+//        this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
+//        this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
+//        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
+//                this.previousSteerState,
+//                this.currentSteerState,
+//                this.actionSteer,
+//                this.steerReward
+//        );
+//        steer = SteerControl.steerAction2Double(this.actionSteer);
 
         // normalize steering
 //        if (steer < -1) steer = -1;
@@ -243,8 +242,8 @@ public class DirectionTrainer extends Controller {
      */
     @Override
     public void reset() {
-        previousSteerState = SteerControl.States.CENTER;
-        currentSteerState = SteerControl.States.CENTER;
+        previousSteerState = SteerControl.States.STATE_9;
+        currentSteerState = SteerControl.States.STATE_9;
         actionSteer = SteerControl.Actions.TURN_C;
         steerReward = 0;
 
@@ -262,7 +261,7 @@ public class DirectionTrainer extends Controller {
 
         String newResults = this.generateStatistics();
         this.steerControlSystem.saveQTableAndStatistics(newResults);
-        this.steerControlSystem.decreaseEpsilon();
+        this.steerControlSystem.updateParams();
 
         tics = 0;
         epochs++;

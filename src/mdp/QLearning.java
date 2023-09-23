@@ -22,11 +22,13 @@ public class QLearning {
 
     private double epsilon;
     private double epsilonDecay;
-    private int maxEpochs;
+    private double learningRate;
+    private double learningRateDecay;
     private int epochs;
     private Random random;
     private ControlSystems system;
     private String qTablePath;
+    private List<Object> stateVisited = null;
 
     /**
      * Constructs a QLearning object for the specified control system.
@@ -35,10 +37,11 @@ public class QLearning {
      */
     public QLearning(ControlSystems system) {
         this.qTable = new HashMap<>();
-        this.epsilon = INITIAL_EPSILON;
         this.epochs = 0;
 
         this.random = new Random(System.currentTimeMillis());
+
+        this.stateVisited = new ArrayList<>();
 
         this.system = system;
         switch (this.system) {
@@ -69,12 +72,15 @@ public class QLearning {
      * @param system    The control system (Steering, Acceleration, or Gear).
      * @param maxEpochs The maximum number of epochs.
      */
-    public QLearning(ControlSystems system, int maxEpochs) {
+    public QLearning(ControlSystems system, int maxEpochs, int rangeEpochs) {
         this.qTable = new HashMap<>();
         this.epsilon = INITIAL_EPSILON;
-        this.maxEpochs = maxEpochs;
-        this.epsilonDecay = INITIAL_EPSILON / this.maxEpochs;
+        this.epsilonDecay = Math.pow((FINAL_EPSILON / INITIAL_EPSILON), (1.0 / RANGE_EPOCHS));
+        this.learningRate = INITIAL_LEARNING_RATE;
+        this.learningRateDecay = Math.pow((FINAL_LEARNING_RATE / INITIAL_LEARNING_RATE), (1.0 / MAX_EPOCHS));
         this.epochs = 0;
+
+        this.stateVisited = new ArrayList<>();
 
         this.random = new Random(System.currentTimeMillis());
         this.system = system;
@@ -144,21 +150,14 @@ public class QLearning {
         qTable.clear();
         try (Scanner file = new Scanner(new File(this.qTablePath))) {
             String[] rowLabels = file.nextLine().split(SEPARATOR);
-            for (String i : rowLabels) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
             while (file.hasNextLine()) {
                 String[] row = file.nextLine().split(SEPARATOR);
                 String state = row[0];
-                System.out.print(state + " ");
                 HashMap<String, Double> rowHash = new HashMap<>();
                 for (int i = 1; i < row.length; i++) {
                     rowHash.put(rowLabels[i], Double.parseDouble(row[i]));
-                    System.out.print(row[i] + " ");
                 }
                 this.qTable.put(state, rowHash);
-                System.out.println();
             }
         } catch (FileNotFoundException e) {
             System.out.println("ERROR!!! -> Could not load tablaQ from .csv file...");
@@ -245,13 +244,15 @@ public class QLearning {
      * @param currentState    The current state.
      * @param actionPerformed The action performed.
      * @param reward          The reward received.
-     *
      * @return The next action to take.
      */
     public Object update(Object lastState, Object currentState, Object actionPerformed, double reward) {
+        if (!this.stateVisited.contains(currentState)) {
+            this.stateVisited.add(currentState);
+        }
         this.lastState = lastState;
         if (lastState != null) {
-            double newQValue = this.getQValue(lastState, actionPerformed) + LEARNING_RATE * (reward + DISCOUNT_FACTOR
+            double newQValue = this.getQValue(lastState, actionPerformed) + this.learningRate * (reward + DISCOUNT_FACTOR
                     * this.getMaxQValue(lastState));
             this.setQValue(lastState, actionPerformed, (Constants.round(newQValue, 8) / 10));
         }
@@ -266,7 +267,7 @@ public class QLearning {
      */
     public void lastUpdate(Object lastAction, double reward) {
         if (this.lastState != null) {
-            double newQValue = (1 - LEARNING_RATE) * this.getQValue(this.lastState, lastAction) + LEARNING_RATE
+            double newQValue = (1 - this.learningRate) * this.getQValue(this.lastState, lastAction) + this.learningRate
                     * (reward + DISCOUNT_FACTOR * this.getMaxQValue(this.lastState));
             this.setQValue(this.lastState, lastAction, (Constants.round(newQValue, 8) / 10));
         }
@@ -277,7 +278,6 @@ public class QLearning {
      *
      * @param stateO  The state.
      * @param actionO The action.
-     *
      * @return The Q-value.
      */
     private double getQValue(Object stateO, Object actionO) {
@@ -337,7 +337,6 @@ public class QLearning {
      * Returns the maximum Q-value for the specified state.
      *
      * @param stateO The state.
-     *
      * @return The maximum Q-value.
      */
     private double getMaxQValue(Object stateO) {
@@ -407,7 +406,6 @@ public class QLearning {
      * Returns the next action to take based on the current state.
      *
      * @param state The current state.
-     *
      * @return The next action.
      */
     public Object nextAction(Object state) {
@@ -433,7 +431,6 @@ public class QLearning {
      * Returns the best action to take based on the current state.
      *
      * @param stateO The current state.
-     *
      * @return The best action.
      */
     private Object getBestAction(Object stateO) {
@@ -480,9 +477,7 @@ public class QLearning {
                 HashMap<String, Double> gearValues = qTable.get(gearState.name());
                 ArrayList<GearControl.Actions> gearCandidates = new ArrayList<>();
                 for (Object tmp : this.possibleActions) {
-                    GearControl.Actions action
-
-                            = (GearControl.Actions) tmp;
+                    GearControl.Actions action = (GearControl.Actions) tmp;
                     double value = gearValues.get(action.name());
                     if (gearMaxValue < value) {
                         gearMaxValue = value;
@@ -502,7 +497,6 @@ public class QLearning {
      * Returns the best action to take based on the current state without any randomness.
      *
      * @param stateO The current state.
-     *
      * @return The best action.
      */
     public Object nextOnlyBestAction(Object stateO) {
@@ -559,6 +553,7 @@ public class QLearning {
      * @param newResults The new results to be added to the statistics.
      */
     public void saveStatistics(String newResults) {
+        newResults = newResults + SEPARATOR + this.epsilon + SEPARATOR + this.learningRate + SEPARATOR + this.stateVisited.size();
         this.saveStatistics(STATISTICS_TEST_PATH, newResults);
     }
 
@@ -570,6 +565,7 @@ public class QLearning {
     public void saveQTableAndStatistics(String newResults) {
         this.epochs++;
         this.saveTable();
+        newResults = newResults + SEPARATOR + this.epsilon + SEPARATOR + this.learningRate + SEPARATOR + this.stateVisited.size();
         this.saveStatistics(STATISTICS_TRAIN_PATH, newResults);
     }
 
@@ -603,7 +599,9 @@ public class QLearning {
     /**
      * Decreases the value of epsilon.
      */
-    public void decreaseEpsilon() {
-        this.epsilon -= this.epsilonDecay;
+    public void updateParams() {
+        this.epsilon = this.epsilon * this.epsilonDecay;
+        this.learningRate = this.learningRate * this.learningRateDecay;
     }
+
 }

@@ -42,7 +42,7 @@ public class DirectionDriver extends Controller {
      */
     public DirectionDriver() {
         steerControlSystem = new QLearning(Constants.ControlSystems.STEERING_CONTROL_SYSTEM);
-        currentSteerState = SteerControl.States.CENTER;
+        currentSteerState = SteerControl.States.STATE_9;
         actionSteer = SteerControl.Actions.TURN_C;
 
         tics = 0;
@@ -167,14 +167,12 @@ public class DirectionDriver extends Controller {
 
         this.actionSteer = (SteerControl.Actions) this.steerControlSystem.nextAction(this.currentSteerState);
         double steer = SteerControl.steerAction2Double(this.actionSteer);
-        System.out.println("Target Angle: " + (this.currentSensors.getAngleToTrackAxis() - this.currentSensors.getTrackPosition() * 0.5));
-        steer = (this.currentSensors.getAngleToTrackAxis() - this.currentSensors.getTrackPosition() * 0.5) / 0.785398;
 
         // normalize steering
-        if (steer < -1)
-            steer = -1;
-        if (steer > 1)
-            steer = 1;
+//        if (steer < -1)
+//            steer = -1;
+//        if (steer > 1)
+//            steer = 1;
         action.steering = steer;
 
         // Calculate accel/brake
@@ -208,7 +206,7 @@ public class DirectionDriver extends Controller {
      */
     @Override
     public void reset() {
-        currentSteerState = SteerControl.States.CENTER;
+        currentSteerState = SteerControl.States.STATE_9;
         actionSteer = SteerControl.Actions.TURN_C;
 
         if (this.completeLap) {

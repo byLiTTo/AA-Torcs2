@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60749e4e-497b-4599-be9b-979f087c3022" name="Changes" comment="Tomamos como punto de partida el proyecto entregado en Julio">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/drivers/DirectionDriver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdp/AccelControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdp/GearControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdp/SteerControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdp/resources/QTable_Accel.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdp/resources/QTable_Gear.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdp/resources/QTable_Steer.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/drivers/DirectionDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/DirectionDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdp/QLearning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/QLearning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mdp/SteerControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/SteerControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mdp/resources/QTable_Accel.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mdp/resources/QTable_Gear.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mdp/resources/QTable_Steer.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/torcs/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/torcs/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,6 +78,7 @@
       <updated>1695316011587</updated>
       <workItem from="1695316012991" duration="15452000" />
       <workItem from="1695396355763" duration="15376000" />
+      <workItem from="1695454750085" duration="28437000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
