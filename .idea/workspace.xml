@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60749e4e-497b-4599-be9b-979f087c3022" name="Changes" comment="Tomamos como punto de partida el proyecto entregado en Julio">
+    <list default="true" id="60749e4e-497b-4599-be9b-979f087c3022" name="Changes" comment="checkpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionDriver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionTrainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionTrainer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/QLearning$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/QLearning$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/QLearning.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/QLearning.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$States.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/QTable_Steer.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTest.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTrain.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTrain.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTest.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTrain.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/drivers/DirectionDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/DirectionDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" afterDir="false" />
@@ -84,7 +84,7 @@
       <updated>1695316011587</updated>
       <workItem from="1695316012991" duration="15452000" />
       <workItem from="1695396355763" duration="15376000" />
-      <workItem from="1695454750085" duration="40804000" />
+      <workItem from="1695454750085" duration="60458000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -102,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695317425042</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="checkpoint">
+      <option name="closed" value="true" />
+      <created>1695518833125</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1695518833125</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,7 +119,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Tomamos como punto de partida el proyecto entregado en Julio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tomamos como punto de partida el proyecto entregado en Julio" />
+    <MESSAGE value="checkpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkpoint" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

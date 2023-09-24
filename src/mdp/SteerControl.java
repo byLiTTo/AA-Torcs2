@@ -5,10 +5,6 @@ import torcs.SensorModel;
 
 public class SteerControl {
 
-    private static final double CENTERED_RANGE = 0.0;
-    private static final double TILTED_RANGE = 0.0;
-    private static final double BORDER_RANGE = 0.0;
-
     public static States evaluateSteerState(SensorModel currentSensors) {
         double maxValue = -1;
         int index = -1;
@@ -23,14 +19,6 @@ public class SteerControl {
         }
         if (index != -1) {
             state = state + index;
-//            double range = Math.abs(currentSensors.getTrackPosition() * 0.5);
-//            if (range <= CENTERED_RANGE) {
-//                state += "CENTERED";
-//            } else if (range <= TILTED_RANGE) {
-//                state += "TILTED";
-//            } else {
-//                state += "BORDER";
-//            }
             System.out.println(state);
             return States.valueOf(state);
         }
@@ -90,23 +78,22 @@ public class SteerControl {
 //            reward += 100.0;
 //        }
 //
-//        if (current.getTrackEdgeSensors()[0] >= 5) {
-//            reward += 100.0;
-//        } else {
-//            reward -= 20.0;
-//        }
-//        if (current.getTrackEdgeSensors()[18] >= 5) {
-//            reward += 10.0;
-//        } else {
-//            reward -= 200.0;
-//        }
-//
-//        return reward;
-        return 10 * (1 - Math.abs(current.getTrackPosition()));
+        int margin = 5;
+        if (current.getTrackEdgeSensors()[0] <= 2) {
+            reward -= 20.0;
+        }
+        if (current.getTrackEdgeSensors()[18] <= 2) {
+            reward -= 20.0;
+        }
+
+        reward += 10 * (1 - Math.abs(current.getTrackPosition()));
+        return reward;
+
     }
 
     public enum Actions {
         TURN_L_45, TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8, TURN_L_1_4, TURN_L_0_7,
+
         TURN_C,
         TURN_R_0_7, TURN_R_1_4, TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5, TURN_R_45
     }

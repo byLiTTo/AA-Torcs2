@@ -19,7 +19,6 @@ public class QLearning {
     private final HashMap<String, HashMap<String, Double>> qTable;
     private List<Object> possibleActions = null;
     private Object lastState;
-
     private double epsilon;
     private double epsilonDecay;
     private double learningRate;
@@ -79,6 +78,7 @@ public class QLearning {
         this.epsilonDecay = INITIAL_EPSILON / (double) (RANGE_EPOCHS);
         this.learningRate = INITIAL_LEARNING_RATE;
         this.learningRateDecay = Math.pow((FINAL_LEARNING_RATE / INITIAL_LEARNING_RATE), (1.0 / MAX_EPOCHS));
+//        this.learningRateDecay = INITIAL_LEARNING_RATE / (double) (MAX_EPOCHS);
         this.epochs = 0;
 
         this.stateVisited = new ArrayList<>();
@@ -105,6 +105,33 @@ public class QLearning {
         else
             this.loadQTable();
     }
+
+    public static double inverseSigmoid(double x) {
+        return 1 / (1 + Math.exp(x));
+    }
+
+    public static double getFactorAprendizaje_Exploracion(double inicio, double fin, int actual, double delay, double end) {
+        double min_x = delay;
+        double max_x = end;
+
+        double n_min_x = -6;
+        double n_max_x = 6;
+
+        double x = ((actual - min_x) / (max_x - min_x)) * (n_max_x - n_min_x) + n_min_x;
+
+        double y = inverseSigmoid(x);
+
+        double min_y = 0;
+        double max_y = 1;
+
+        double n_min_y = fin;
+        double n_max_y = inicio;
+
+        double ny = ((y - min_y) / (max_y - min_y)) * (n_max_y - n_min_y) + n_min_y;
+
+        return ny;
+    }
+
 
     /**
      * Creates the Q-table for the specified control system.
@@ -255,7 +282,7 @@ public class QLearning {
         if (lastState != null) {
             double newQValue = this.getQValue(lastState, actionPerformed) + this.learningRate * (reward + DISCOUNT_FACTOR
                     * this.getMaxQValue(lastState));
-            this.setQValue(lastState, actionPerformed, (Constants.round(newQValue, 8)));
+            this.setQValue(lastState, actionPerformed, (Constants.round(newQValue, 8) / 10));
         }
         return nextAction(currentState);
     }
@@ -270,7 +297,7 @@ public class QLearning {
         if (this.lastState != null) {
             double newQValue = (1 - this.learningRate) * this.getQValue(this.lastState, lastAction) + this.learningRate
                     * (reward + DISCOUNT_FACTOR * this.getMaxQValue(this.lastState));
-            this.setQValue(this.lastState, lastAction, (Constants.round(newQValue, 8)));
+            this.setQValue(this.lastState, lastAction, (Constants.round(newQValue, 8) / 10));
         }
     }
 
@@ -601,13 +628,8 @@ public class QLearning {
      * Decreases the value of epsilon.
      */
     public void updateParams() {
-        if (this.epochs < RANGE_EPOCHS) {
-//        this.epsilon = this.epsilon * this.epsilonDecay;
-            this.epsilon = this.epsilon - this.epsilonDecay;
-        } else {
-            this.epsilon = 0.0;
-        }
-        this.learningRate = this.learningRate * this.learningRateDecay;
+        this.epsilon = getFactorAprendizaje_Exploracion(INITIAL_EPSILON, FINAL_EPSILON, this.epochs, 50, 250);
+        this.learningRate = getFactorAprendizaje_Exploracion(INITIAL_LEARNING_RATE, FINAL_LEARNING_RATE, this.epochs, 0, 300);
     }
 
 }

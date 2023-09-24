@@ -128,7 +128,7 @@ public class DirectionTrainer extends Controller {
         if (Math.abs(this.currentSensors.getTrackPosition()) >= 1) {
             this.offTrack = true;
 
-            this.steerControlSystem.lastUpdate(this.actionSteer, (-500.0));
+            this.steerControlSystem.lastUpdate(this.actionSteer, (-1000.0));
 
             Action action = new Action();
             action.restartRace = true;
@@ -179,38 +179,54 @@ public class DirectionTrainer extends Controller {
 
         // Calculate steer value
         double steer;
+//        if (this.tics % 3 == 0) {
+//            this.previousSteerState = this.currentSteerState;
+//            this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
+//            this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
+//            this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
+//                    this.previousSteerState,
+//                    this.currentSteerState,
+//                    this.actionSteer,
+//                    this.steerReward
+//            );
+//            steer = SteerControl.steerAction2Double(this.actionSteer);
+//        } else {
+//            steer = SteerControl.steerAction2Double(this.actionSteer);
+//        }
 
-        if (this.tics % 5 == 0) {
-            this.previousSteerState = this.currentSteerState;
-            this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-            this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-            this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-                    this.previousSteerState,
-                    this.currentSteerState,
-                    this.actionSteer,
-                    this.steerReward
-            );
-            steer = SteerControl.steerAction2Double(this.actionSteer);
-        } else {
-            steer = SteerControl.steerAction2Double(this.actionSteer);
-        }
-
-//        this.previousSteerState = this.currentSteerState;
-//        this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-//        this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-//        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-//                this.previousSteerState,
-//                this.currentSteerState,
-//                this.actionSteer,
-//                this.steerReward
-//        );
-//        steer = SteerControl.steerAction2Double(this.actionSteer);
-
-        System.out.println("steer: " + steer);
+        this.previousSteerState = this.currentSteerState;
+        this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
+//        int actionIndex = this.actionSteer.ordinal();
+//        List<Object> possible = new ArrayList<>();
+//        if (actionIndex > 0 && actionIndex < SteerControl.Actions.values().length - 1) {
+//            possible.add(SteerControl.Actions.values()[actionIndex - 1]);
+//            possible.add(SteerControl.Actions.values()[actionIndex]);
+//            possible.add(SteerControl.Actions.values()[actionIndex + 1]);
+//        } else if (actionIndex == 0) {
+//            possible.add(SteerControl.Actions.values()[actionIndex]);
+//            possible.add(SteerControl.Actions.values()[actionIndex + 1]);
+//        } else {
+//            possible.add(SteerControl.Actions.values()[actionIndex - 1]);
+//            possible.add(SteerControl.Actions.values()[actionIndex]);
+//        }
+        this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
+        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
+                this.previousSteerState,
+                this.currentSteerState,
+                this.actionSteer,
+                this.steerReward
+        );
+        steer = SteerControl.steerAction2Double(this.actionSteer);
 
         // normalize steering
-//        if (steer < -1) steer = -1;
-//        if (steer > 1) steer = 1;
+        if (steer < -1) {
+            steer = -1;
+            System.out.println("Action: " + actionSteer.name());
+        }
+        if (steer > 1) {
+            steer = 1;
+            System.out.println("Action: " + actionSteer.name());
+        }
         action.steering = steer;
 
         // Calculate accel/brake

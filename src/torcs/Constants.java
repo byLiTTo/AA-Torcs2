@@ -14,8 +14,8 @@ public class Constants {
     public static final double INITIAL_LEARNING_RATE = 0.85;
     public static final double FINAL_LEARNING_RATE = 0.15;
     public static final double DISCOUNT_FACTOR = 0.2;
-    public static final int MAX_EPOCHS = 10;
-    public static final int RANGE_EPOCHS = 9;
+    public static final int MAX_EPOCHS = 300;
+    public static final int RANGE_EPOCHS = 300;
     public static final String STEER_Q_TABLE_PATH = System.getProperty("user.dir") + "/mdp/resources/QTable_Steer.csv";
     public static final String ACCEL_Q_TABLE_PATH = System.getProperty("user.dir") + "/mdp/resources/QTable_Accel.csv";
     public static final String GEAR_Q_TABLE_PATH = System.getProperty("user.dir") + "/mdp/resources/QTable_Gear.csv";

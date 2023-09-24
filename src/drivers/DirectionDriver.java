@@ -206,9 +206,7 @@ public class DirectionDriver extends Controller {
             System.out.println("Complete lap!");
         }
         if (this.offTrack) {
-            System
-
-                    .out.println("Out of track!");
+            System.out.println("Out of track!");
         }
 
         String newResults = this.generateStatistics();
