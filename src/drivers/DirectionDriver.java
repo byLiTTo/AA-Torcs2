@@ -62,7 +62,6 @@ public class DirectionDriver extends Controller {
      * Controls the car's actions based on the current sensor inputs.
      *
      * @param sensors the sensor data received from the car
-     *
      * @return an Action object specifying the car's actions
      */
     @Override
@@ -161,18 +160,11 @@ public class DirectionDriver extends Controller {
 //        action.gear = DrivingInstructor.getGear(this.currentSensors);
         action.gear = 1;
 
+
         // Calculate steer value
         this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
         this.actionSteer = (SteerControl.Actions) this.steerControlSystem.nextOnlyBestAction(this.currentSteerState);
-
-        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.nextAction(this.currentSteerState);
         double steer = SteerControl.steerAction2Double(this.actionSteer);
-
-        // normalize steering
-//        if (steer < -1)
-//            steer = -1;
-//        if (steer > 1)
-//            steer = 1;
         action.steering = steer;
 
         // Calculate accel/brake

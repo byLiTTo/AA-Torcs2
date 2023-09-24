@@ -19,7 +19,6 @@ public class SteerControl {
             if (maxValue < distances[i]) {
                 maxValue = distances[i];
                 index = i;
-                index = i;
             }
         }
         if (index != -1) {
@@ -46,12 +45,12 @@ public class SteerControl {
             case "L": {
                 String angleName = actionSteer.name().replaceAll("TURN_L_", "").replace("_", ".");
                 double angleDegree = Double.parseDouble(angleName);
-                return Constants.round((Constants.toRadians(angleDegree) / Constants.radian), 4);
+                return Constants.round((Constants.toRadians(angleDegree)), 4);
             }
             case "R": {
                 String angleName = actionSteer.name().replaceAll("TURN_R_", "").replace("_", ".");
                 double angleDegree = Double.parseDouble(angleName);
-                return -Constants.round((Constants.toRadians(angleDegree) / Constants.radian), 4);
+                return -Constants.round((Constants.toRadians(angleDegree)), 4);
             }
         }
         return 0.0;
@@ -59,27 +58,57 @@ public class SteerControl {
 
     public static double calculateReward(SensorModel previous, SensorModel current) {
         double reward = 0.0;
-
-        if (previous.getDistanceRaced() + 5 < current.getDistanceRaced()) {
-            reward += 100;
-        }
-
-        if (current.getTrackEdgeSensors()[0] >= 10) {
-            reward += 100;
-        }
-
-        if (current.getTrackEdgeSensors()[18] >= 10) {
-            reward += 100;
-        }
-
-
-        return reward;
+////        double speedDiference = Math.abs(previous.getSpeed() - current.getSpeed());
+////        if (speedDiference >= 0 && speedDiference <= 5) {
+////            reward += 100.0;
+////        }
+//
+//        // Reading of sensor at +5 degrees w.r.t. car axis
+//        float rxSensor = (float) previous.getTrackEdgeSensors()[10];
+//        // Reading of sensor parallel to car axis
+//        float sensorSensor = (float) previous.getTrackEdgeSensors()[9];
+//        // Reading of sensor at -5 degrees w.r.t. car axis
+//        float sxSensor = (float) previous.getTrackEdgeSensors()[8];
+//
+//        // Reading of sensor at +5 degrees w.r.t. car axis
+//        float rxSensorCurrent = (float) current.getTrackEdgeSensors()[10];
+//        // Reading of sensor parallel to car axis
+//        float sensorSensorCurrent = (float) current.getTrackEdgeSensors()[9];
+//        // Reading of sensor at -5 degrees w.r.t. car axis
+//        float sxSensorCurrent = (float) current.getTrackEdgeSensors()[8];
+//
+//        // Approaching a turn on the left
+//        if (rxSensor < sxSensor) {
+//            reward += (sensorSensorCurrent - sensorSensor) * 100.0;
+//        }
+//        // Approaching a turn on the right
+//        else if (rxSensor > sxSensor) {
+//            reward += (sensorSensorCurrent - sensorSensor) * 100.0;
+//        }
+//
+//        if (Constants.round(sensorSensor, 0) == 200 && Constants.round(sensorSensorCurrent, 0) == 200) {
+//            reward += 100.0;
+//        }
+//
+//        if (current.getTrackEdgeSensors()[0] >= 5) {
+//            reward += 100.0;
+//        } else {
+//            reward -= 20.0;
+//        }
+//        if (current.getTrackEdgeSensors()[18] >= 5) {
+//            reward += 10.0;
+//        } else {
+//            reward -= 200.0;
+//        }
+//
+//        return reward;
+        return 10 * (1 - Math.abs(current.getTrackPosition()));
     }
 
     public enum Actions {
-        TURN_L_45, TURN_L_30, TURN_L_25, TURN_L_20, TURN_L_15, TURN_L_10, TURN_L_7_5, TURN_L_5, TURN_L_2_5,
+        TURN_L_45, TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8, TURN_L_1_4, TURN_L_0_7,
         TURN_C,
-        TURN_R_2_5, TURN_R_5, TURN_R_7_5, TURN_R_10, TURN_R_15, TURN_R_20, TURN_R_25, TURN_R_30, TURN_R_45
+        TURN_R_0_7, TURN_R_1_4, TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5, TURN_R_45
     }
 
     /**

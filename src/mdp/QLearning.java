@@ -75,7 +75,8 @@ public class QLearning {
     public QLearning(ControlSystems system, int maxEpochs, int rangeEpochs) {
         this.qTable = new HashMap<>();
         this.epsilon = INITIAL_EPSILON;
-        this.epsilonDecay = Math.pow((FINAL_EPSILON / INITIAL_EPSILON), (1.0 / RANGE_EPOCHS));
+//        this.epsilonDecay = Math.pow((FINAL_EPSILON / INITIAL_EPSILON), (1.0 / RANGE_EPOCHS));
+        this.epsilonDecay = INITIAL_EPSILON / (double) (RANGE_EPOCHS);
         this.learningRate = INITIAL_LEARNING_RATE;
         this.learningRateDecay = Math.pow((FINAL_LEARNING_RATE / INITIAL_LEARNING_RATE), (1.0 / MAX_EPOCHS));
         this.epochs = 0;
@@ -254,7 +255,7 @@ public class QLearning {
         if (lastState != null) {
             double newQValue = this.getQValue(lastState, actionPerformed) + this.learningRate * (reward + DISCOUNT_FACTOR
                     * this.getMaxQValue(lastState));
-            this.setQValue(lastState, actionPerformed, (Constants.round(newQValue, 8) / 10));
+            this.setQValue(lastState, actionPerformed, (Constants.round(newQValue, 8)));
         }
         return nextAction(currentState);
     }
@@ -269,7 +270,7 @@ public class QLearning {
         if (this.lastState != null) {
             double newQValue = (1 - this.learningRate) * this.getQValue(this.lastState, lastAction) + this.learningRate
                     * (reward + DISCOUNT_FACTOR * this.getMaxQValue(this.lastState));
-            this.setQValue(this.lastState, lastAction, (Constants.round(newQValue, 8) / 10));
+            this.setQValue(this.lastState, lastAction, (Constants.round(newQValue, 8)));
         }
     }
 
@@ -600,7 +601,12 @@ public class QLearning {
      * Decreases the value of epsilon.
      */
     public void updateParams() {
-        this.epsilon = this.epsilon * this.epsilonDecay;
+        if (this.epochs < RANGE_EPOCHS) {
+//        this.epsilon = this.epsilon * this.epsilonDecay;
+            this.epsilon = this.epsilon - this.epsilonDecay;
+        } else {
+            this.epsilon = 0.0;
+        }
         this.learningRate = this.learningRate * this.learningRateDecay;
     }
 

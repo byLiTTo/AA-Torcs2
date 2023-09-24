@@ -206,6 +206,8 @@ public class DirectionTrainer extends Controller {
 //        );
 //        steer = SteerControl.steerAction2Double(this.actionSteer);
 
+        System.out.println("steer: " + steer);
+
         // normalize steering
 //        if (steer < -1) steer = -1;
 //        if (steer > 1) steer = 1;
