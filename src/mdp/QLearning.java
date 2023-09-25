@@ -282,7 +282,7 @@ public class QLearning {
         if (lastState != null) {
             double newQValue = this.getQValue(lastState, actionPerformed) + this.learningRate * (reward + DISCOUNT_FACTOR
                     * this.getMaxQValue(lastState));
-            this.setQValue(lastState, actionPerformed, (Constants.round(newQValue, 8) / 10));
+            this.setQValue(lastState, actionPerformed, (Constants.round(newQValue, 8)));
         }
         return nextAction(currentState);
     }
@@ -297,7 +297,7 @@ public class QLearning {
         if (this.lastState != null) {
             double newQValue = (1 - this.learningRate) * this.getQValue(this.lastState, lastAction) + this.learningRate
                     * (reward + DISCOUNT_FACTOR * this.getMaxQValue(this.lastState));
-            this.setQValue(this.lastState, lastAction, (Constants.round(newQValue, 8) / 10));
+            this.setQValue(this.lastState, lastAction, (Constants.round(newQValue, 8)));
         }
     }
 
@@ -628,8 +628,8 @@ public class QLearning {
      * Decreases the value of epsilon.
      */
     public void updateParams() {
-        this.epsilon = getFactorAprendizaje_Exploracion(INITIAL_EPSILON, FINAL_EPSILON, this.epochs, 50, 250);
-        this.learningRate = getFactorAprendizaje_Exploracion(INITIAL_LEARNING_RATE, FINAL_LEARNING_RATE, this.epochs, 0, 300);
+        this.epsilon = getFactorAprendizaje_Exploracion(INITIAL_EPSILON, FINAL_EPSILON, this.epochs, 0, RANGE_EPOCHS);
+//        this.learningRate = getFactorAprendizaje_Exploracion(INITIAL_LEARNING_RATE, FINAL_LEARNING_RATE, this.epochs, 0, MAX_EPOCHS);
     }
 
 }

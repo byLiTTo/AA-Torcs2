@@ -65,7 +65,6 @@ public class SimpleDriver extends Controller {
      * Calculates the gear to use based on the current RPM value.
      *
      * @param sensors the sensor input
-     *
      * @return the selected gear
      */
     private int getGear(SensorModel sensors) {
@@ -85,7 +84,6 @@ public class SimpleDriver extends Controller {
      * Calculates the steering angle based on the current sensor input.
      *
      * @param sensors the sensor input
-     *
      * @return the steering angle
      */
     private float getSteer(SensorModel sensors) {
@@ -100,7 +98,6 @@ public class SimpleDriver extends Controller {
      * Calculates the acceleration command based on the current sensor input.
      *
      * @param sensors the sensor input
-     *
      * @return the acceleration command
      */
     private float getAccel(SensorModel sensors) {
@@ -137,7 +134,6 @@ public class SimpleDriver extends Controller {
      * Controls the car based on the sensor input.
      *
      * @param sensors the sensor input
-     *
      * @return the action to take
      */
     public Action control(SensorModel sensors) {
@@ -200,7 +196,6 @@ public class SimpleDriver extends Controller {
      *
      * @param sensors the sensor input
      * @param brake   the brake command
-     *
      * @return the filtered brake command
      */
     private float filterABS(SensorModel sensors, float brake) {
@@ -229,7 +224,6 @@ public class SimpleDriver extends Controller {
      *
      * @param sensors the sensor input
      * @param clutch  the current clutch value
-     *
      * @return the adjusted clutch value
      */
     float clutching(SensorModel sensors, float clutch) {

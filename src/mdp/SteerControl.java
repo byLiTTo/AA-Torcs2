@@ -78,15 +78,9 @@ public class SteerControl {
 //            reward += 100.0;
 //        }
 //
-        int margin = 5;
-        if (current.getTrackEdgeSensors()[0] <= 2) {
-            reward -= 20.0;
-        }
-        if (current.getTrackEdgeSensors()[18] <= 2) {
-            reward -= 20.0;
-        }
-
         reward += 10 * (1 - Math.abs(current.getTrackPosition()));
+
+
         return reward;
 
     }

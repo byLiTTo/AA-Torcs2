@@ -10,6 +10,8 @@ import static torcs.Constants.SEPARATOR;
  * A driver that uses Q-learning to control the steering direction of the car.
  */
 public class DirectionTrainer extends Controller {
+    private final double LIMITER_SPEED = 40.0;
+    private final double TRACK_LIMIT = 0.85;
     // QLearning to Steer Control Variables
     private QLearning steerControlSystem;
     private SteerControl.States previousSteerState;
@@ -125,7 +127,7 @@ public class DirectionTrainer extends Controller {
         }
 
         // If the car is off track, restart the race
-        if (Math.abs(this.currentSensors.getTrackPosition()) >= 1) {
+        if (Math.abs(this.currentSensors.getTrackPosition()) >= TRACK_LIMIT) {
             this.offTrack = true;
 
             this.steerControlSystem.lastUpdate(this.actionSteer, (-1000.0));
@@ -179,54 +181,32 @@ public class DirectionTrainer extends Controller {
 
         // Calculate steer value
         double steer;
-//        if (this.tics % 3 == 0) {
-//            this.previousSteerState = this.currentSteerState;
-//            this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-//            this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-//            this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-//                    this.previousSteerState,
-//                    this.currentSteerState,
-//                    this.actionSteer,
-//                    this.steerReward
-//            );
-//            steer = SteerControl.steerAction2Double(this.actionSteer);
-//        } else {
-//            steer = SteerControl.steerAction2Double(this.actionSteer);
-//        }
-
-        this.previousSteerState = this.currentSteerState;
-        this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-//        int actionIndex = this.actionSteer.ordinal();
-//        List<Object> possible = new ArrayList<>();
-//        if (actionIndex > 0 && actionIndex < SteerControl.Actions.values().length - 1) {
-//            possible.add(SteerControl.Actions.values()[actionIndex - 1]);
-//            possible.add(SteerControl.Actions.values()[actionIndex]);
-//            possible.add(SteerControl.Actions.values()[actionIndex + 1]);
-//        } else if (actionIndex == 0) {
-//            possible.add(SteerControl.Actions.values()[actionIndex]);
-//            possible.add(SteerControl.Actions.values()[actionIndex + 1]);
-//        } else {
-//            possible.add(SteerControl.Actions.values()[actionIndex - 1]);
-//            possible.add(SteerControl.Actions.values()[actionIndex]);
-//        }
-        this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-                this.previousSteerState,
-                this.currentSteerState,
-                this.actionSteer,
-                this.steerReward
-        );
-        steer = SteerControl.steerAction2Double(this.actionSteer);
-
-        // normalize steering
-        if (steer < -1) {
-            steer = -1;
-            System.out.println("Action: " + actionSteer.name());
+        if (this.tics % 5 == 0) {
+            this.previousSteerState = this.currentSteerState;
+            this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
+            this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
+            this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
+                    this.previousSteerState,
+                    this.currentSteerState,
+                    this.actionSteer,
+                    this.steerReward
+            );
+            steer = SteerControl.steerAction2Double(this.actionSteer);
+        } else {
+            steer = SteerControl.steerAction2Double(this.actionSteer);
         }
-        if (steer > 1) {
-            steer = 1;
-            System.out.println("Action: " + actionSteer.name());
-        }
+
+//        this.previousSteerState = this.currentSteerState;
+//        this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
+//        this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
+//        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
+//                this.previousSteerState,
+//                this.currentSteerState,
+//                this.actionSteer,
+//                this.steerReward
+//        );
+//        steer = SteerControl.steerAction2Double(this.actionSteer);
+
         action.steering = steer;
 
         // Calculate accel/brake
@@ -244,7 +224,7 @@ public class DirectionTrainer extends Controller {
         }
 //        action.accelerate = accel;
 //        action.brake = brake;
-        if (sensors.getSpeed() < 50) {
+        if (sensors.getSpeed() < LIMITER_SPEED) {
             action.accelerate = 1;
         }
 
