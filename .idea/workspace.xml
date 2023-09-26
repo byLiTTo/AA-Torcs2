@@ -5,20 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60749e4e-497b-4599-be9b-979f087c3022" name="Changes" comment="checkpoint">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionDriver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionTrainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionTrainer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/QLearning.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/QLearning.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$States.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTest.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants$ControlSystems.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants$ControlSystems.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdp/QLearning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/QLearning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdp/SteerControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/SteerControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/torcs/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/torcs/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,26 +34,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/WORKSPACE/AA-Torcs/out/production/AA-Torcs/mdp/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "proofread",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/WORKSPACE/AA-Torcs/out/production/AA-Torcs/mdp/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\WORKSPACE\AA-Torcs\out\production\AA-Torcs\mdp\resources" />
@@ -89,6 +79,7 @@
       <workItem from="1695454750085" duration="63102000" />
       <workItem from="1695648926943" duration="16051000" />
       <workItem from="1695742591396" duration="10083000" />
+      <workItem from="1695758212414" duration="170000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />

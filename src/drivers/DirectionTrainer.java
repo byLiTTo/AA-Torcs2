@@ -172,28 +172,32 @@ public class DirectionTrainer extends Controller {
         action.gear = 1;
 
         // Calculate steer value
-        double steer;
-        if (this.tics % 5 == 0) {
-            this.previousSteerState = this.currentSteerState;
-            this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-            this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-            this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-                    this.previousSteerState,
-                    this.currentSteerState,
-                    this.actionSteer,
-                    this.steerReward
-            );
-            steer = SteerControl.steerAction2Double(this.actionSteer);
-            System.out.println();
-            System.out.println("Epochs: " + this.epochs + "\t"
-                    + "Tics: " + this.tics + "\t"
-                    + "State: " + this.currentSteerState + "\t"
-                    + "Action: " + this.actionSteer + "\t"
-                    + "Reward: " + this.steerReward
-            );
-            System.out.println();
-        } else {
-            steer = SteerControl.steerAction2Double(this.actionSteer);
+        double steer = SteerControl.steerAction2Double(SteerControl.Actions.TURN_R_2_8);
+        if (this.tics > 100 && this.tics < 140) {
+            steer = SteerControl.steerAction2Double(SteerControl.Actions.TURN_C);
+        } else if (this.tics >= 140){
+            if (this.tics % 5 == 0) {
+                this.previousSteerState = this.currentSteerState;
+                this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
+                this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
+                this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
+                        this.previousSteerState,
+                        this.currentSteerState,
+                        this.actionSteer,
+                        this.steerReward
+                );
+                steer = SteerControl.steerAction2Double(this.actionSteer);
+                System.out.println();
+                System.out.println("Epochs: " + this.epochs + "\t"
+                        + "Tics: " + this.tics + "\t"
+                        + "State: " + this.currentSteerState + "\t"
+                        + "Action: " + this.actionSteer + "\t"
+                        + "Reward: " + this.steerReward
+                );
+                System.out.println();
+            } else {
+                steer = SteerControl.steerAction2Double(this.actionSteer);
+            }
         }
         action.steering = steer;
 

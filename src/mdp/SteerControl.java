@@ -46,10 +46,11 @@ public class SteerControl {
     public static double calculateReward(SensorModel previous, SensorModel current) {
         double reward = 0.0;
 //
-//        reward += 10 * (1 - Math.abs(current.getTrackPosition()));
+//
 
         if (Math.abs(current.getAngleToTrackAxis()) < 0.1) {
             reward += 1.0;
+            reward += (1 - Math.abs(current.getTrackPosition()));
         }
 
         return reward;
