@@ -60,12 +60,12 @@ public class SteerControl {
     public enum Actions {
         //        TURN_L_45, TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8, TURN_L_1_4, TURN_L_0_7,
 //        TURN_L_45, TURN_L_35, TURN_L_25, TURN_L_15, TURN_L_5,
-        TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8, TURN_L_1_4,
+        TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8,
 
         TURN_C,
         //        TURN_R_0_7, TURN_R_1_4, TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5, TURN_R_45
 //        TURN_R_5, TURN_R_15, TURN_R_25, TURN_R_35, TURN_R_45
-        TURN_R_1_4, TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5
+        TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5
     }
 
     /**

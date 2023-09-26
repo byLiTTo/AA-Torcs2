@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60749e4e-497b-4599-be9b-979f087c3022" name="Changes" comment="checkpoint">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionTrainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/drivers/DirectionTrainer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdp/SteerControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/SteerControl.java" afterDir="false" />
     </list>
@@ -79,7 +80,8 @@
       <workItem from="1695454750085" duration="63102000" />
       <workItem from="1695648926943" duration="16051000" />
       <workItem from="1695742591396" duration="10083000" />
-      <workItem from="1695758212414" duration="170000" />
+      <workItem from="1695758212414" duration="1454000" />
+      <workItem from="1695760614747" duration="304000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />

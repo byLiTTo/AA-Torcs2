@@ -172,10 +172,10 @@ public class DirectionTrainer extends Controller {
         action.gear = 1;
 
         // Calculate steer value
-        double steer = SteerControl.steerAction2Double(SteerControl.Actions.TURN_R_2_8);
-        if (this.tics > 100 && this.tics < 140) {
-            steer = SteerControl.steerAction2Double(SteerControl.Actions.TURN_C);
-        } else if (this.tics >= 140){
+        double steer = 0.0;
+        if (this.tics < 700) {
+            steer = DrivingInstructor.getSteer(sensors);
+        } else {
             if (this.tics % 5 == 0) {
                 this.previousSteerState = this.currentSteerState;
                 this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
