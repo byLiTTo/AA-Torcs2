@@ -12,12 +12,10 @@
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$Actions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl$States.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/SteerControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/QTable_Steer.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTest.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTrain.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/mdp/resources/StatisticsTest.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants$ControlSystems.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants$ControlSystems.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AA-Torcs/torcs/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/drivers/SimpleDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drivers/SimpleDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/drivers/DirectionTrainer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdp/QLearning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/QLearning.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdp/SteerControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdp/SteerControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/torcs/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/torcs/Constants.java" afterDir="false" />
@@ -59,6 +57,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "proofread",
     "vue.rearranger.settings.migration": "true"
   }
@@ -86,7 +87,8 @@
       <workItem from="1695316012991" duration="15452000" />
       <workItem from="1695396355763" duration="15376000" />
       <workItem from="1695454750085" duration="63102000" />
-      <workItem from="1695648926943" duration="10158000" />
+      <workItem from="1695648926943" duration="16051000" />
+      <workItem from="1695742591396" duration="10083000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -112,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695518833125</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="checkpoint">
+      <option name="closed" value="true" />
+      <created>1695667022242</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695667022242</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

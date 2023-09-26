@@ -10,7 +10,7 @@ import static torcs.Constants.SEPARATOR;
  * A driver that uses Q-learning to control the steering direction of the car.
  */
 public class DirectionTrainer extends Controller {
-    private final double LIMITER_SPEED = 40.0;
+    private final double LIMITER_SPEED = 30.0;
     private final double TRACK_LIMIT = 0.85;
     // QLearning to Steer Control Variables
     private QLearning steerControlSystem;
@@ -40,7 +40,7 @@ public class DirectionTrainer extends Controller {
      * Initializes a new instance of the DirectionTrainer class.
      */
     public DirectionTrainer() {
-        steerControlSystem = new QLearning(Constants.ControlSystems.STEERING_CONTROL_SYSTEM, Constants.MAX_EPOCHS, Constants.RANGE_EPOCHS);
+        steerControlSystem = new QLearning(Constants.ControlSystems.STEERING_CONTROL_SYSTEM, Constants.MAX_EPOCHS, Constants.RANGE_EPOCHS_END);
         previousSteerState = SteerControl.States.STATE_9;
         currentSteerState = SteerControl.States.STATE_9;
         actionSteer = SteerControl.Actions.TURN_C;
@@ -84,12 +84,6 @@ public class DirectionTrainer extends Controller {
             this.currentSensors = sensors;
 
             this.tics++;
-
-            System.out.println("Tics: " + this.tics);
-            System.out.println("Laps: " + this.laps + "/1");
-            System.out.println("Epochs: " + this.epochs + "/" + Constants.MAX_EPOCHS);
-            System.out.println("Complete Laps: " + this.completeLaps + "/" + Constants.MAX_EPOCHS);
-            System.out.println();
         }
 
         // Check if time-out
@@ -105,9 +99,7 @@ public class DirectionTrainer extends Controller {
         this.distanceRaced = this.currentSensors.getDistanceRaced();
 
         // Update high speed
-        if (this.currentSensors.getSpeed() > this.highSpeed
-
-        ) {
+        if (this.currentSensors.getSpeed() > this.highSpeed) {
             this.highSpeed = this.currentSensors.getSpeed();
         }
 
@@ -130,7 +122,7 @@ public class DirectionTrainer extends Controller {
         if (Math.abs(this.currentSensors.getTrackPosition()) >= TRACK_LIMIT) {
             this.offTrack = true;
 
-            this.steerControlSystem.lastUpdate(this.actionSteer, (-1000.0));
+            this.steerControlSystem.lastUpdate(this.actionSteer, (-10.0));
 
             Action action = new Action();
             action.restartRace = true;
@@ -192,21 +184,17 @@ public class DirectionTrainer extends Controller {
                     this.steerReward
             );
             steer = SteerControl.steerAction2Double(this.actionSteer);
+            System.out.println();
+            System.out.println("Epochs: " + this.epochs + "\t"
+                    + "Tics: " + this.tics + "\t"
+                    + "State: " + this.currentSteerState + "\t"
+                    + "Action: " + this.actionSteer + "\t"
+                    + "Reward: " + this.steerReward
+            );
+            System.out.println();
         } else {
             steer = SteerControl.steerAction2Double(this.actionSteer);
         }
-
-//        this.previousSteerState = this.currentSteerState;
-//        this.currentSteerState = SteerControl.evaluateSteerState(this.currentSensors);
-//        this.steerReward = SteerControl.calculateReward(this.previousSensors, this.currentSensors);
-//        this.actionSteer = (SteerControl.Actions) this.steerControlSystem.update(
-//                this.previousSteerState,
-//                this.currentSteerState,
-//                this.actionSteer,
-//                this.steerReward
-//        );
-//        steer = SteerControl.steerAction2Double(this.actionSteer);
-
         action.steering = steer;
 
         // Calculate accel/brake

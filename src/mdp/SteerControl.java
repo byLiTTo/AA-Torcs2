@@ -19,7 +19,6 @@ public class SteerControl {
         }
         if (index != -1) {
             state = state + index;
-            System.out.println(state);
             return States.valueOf(state);
         }
         return States.STATE_9;
@@ -46,50 +45,26 @@ public class SteerControl {
 
     public static double calculateReward(SensorModel previous, SensorModel current) {
         double reward = 0.0;
-////        double speedDiference = Math.abs(previous.getSpeed() - current.getSpeed());
-////        if (speedDiference >= 0 && speedDiference <= 5) {
-////            reward += 100.0;
-////        }
 //
-//        // Reading of sensor at +5 degrees w.r.t. car axis
-//        float rxSensor = (float) previous.getTrackEdgeSensors()[10];
-//        // Reading of sensor parallel to car axis
-//        float sensorSensor = (float) previous.getTrackEdgeSensors()[9];
-//        // Reading of sensor at -5 degrees w.r.t. car axis
-//        float sxSensor = (float) previous.getTrackEdgeSensors()[8];
-//
-//        // Reading of sensor at +5 degrees w.r.t. car axis
-//        float rxSensorCurrent = (float) current.getTrackEdgeSensors()[10];
-//        // Reading of sensor parallel to car axis
-//        float sensorSensorCurrent = (float) current.getTrackEdgeSensors()[9];
-//        // Reading of sensor at -5 degrees w.r.t. car axis
-//        float sxSensorCurrent = (float) current.getTrackEdgeSensors()[8];
-//
-//        // Approaching a turn on the left
-//        if (rxSensor < sxSensor) {
-//            reward += (sensorSensorCurrent - sensorSensor) * 100.0;
-//        }
-//        // Approaching a turn on the right
-//        else if (rxSensor > sxSensor) {
-//            reward += (sensorSensorCurrent - sensorSensor) * 100.0;
-//        }
-//
-//        if (Constants.round(sensorSensor, 0) == 200 && Constants.round(sensorSensorCurrent, 0) == 200) {
-//            reward += 100.0;
-//        }
-//
-        reward += 10 * (1 - Math.abs(current.getTrackPosition()));
+//        reward += 10 * (1 - Math.abs(current.getTrackPosition()));
 
+        if (Math.abs(current.getAngleToTrackAxis()) < 0.1) {
+            reward += 1.0;
+        }
 
         return reward;
 
     }
 
     public enum Actions {
-        TURN_L_45, TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8, TURN_L_1_4, TURN_L_0_7,
+        //        TURN_L_45, TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8, TURN_L_1_4, TURN_L_0_7,
+//        TURN_L_45, TURN_L_35, TURN_L_25, TURN_L_15, TURN_L_5,
+        TURN_L_22_5, TURN_L_11_25, TURN_L_5_6, TURN_L_2_8, TURN_L_1_4,
 
         TURN_C,
-        TURN_R_0_7, TURN_R_1_4, TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5, TURN_R_45
+        //        TURN_R_0_7, TURN_R_1_4, TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5, TURN_R_45
+//        TURN_R_5, TURN_R_15, TURN_R_25, TURN_R_35, TURN_R_45
+        TURN_R_1_4, TURN_R_2_8, TURN_R_5_6, TURN_R_11_25, TURN_R_22_5
     }
 
     /**
